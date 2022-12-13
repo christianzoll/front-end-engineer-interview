@@ -23,10 +23,6 @@ function UserPostsPage() {
 		return <PageLoading />;
 	}
 
-	if (user == null || posts == null) {
-		return <>An error has occurred</>;
-	}
-
 	return (
 		<>
 			<div className="d-flex justify-content-between mb-4">
