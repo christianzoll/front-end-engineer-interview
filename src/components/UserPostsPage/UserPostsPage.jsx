@@ -14,6 +14,45 @@ function UserPostsPage() {
 	 * Data URL: https://jsonplaceholder.typicode.com/posts?userId=[userId]
 	 * User URL: https://jsonplaceholder.typicode.com/users/[userId]
 	 */
+	useEffect(() => {
+		if (userId === undefined) return;
+
+		setLoading(true);
+
+		// load post
+		fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
+			.then((response) => {
+				if (!response.ok) throw new Error('Malformed response');
+
+				return response.json();
+			})
+			.then((data) => {
+				setPosts(data);
+			})
+			.catch((error) => {
+				console.error(error.message ?? 'An error has occurred.');
+			});
+
+		// load user
+		fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+			.then((response) => {
+				if (!response.ok) throw new Error('Malformed response');
+
+				return response.json();
+			})
+			.then((data) => {
+				setUser(data);
+			})
+			.catch((error) => {
+				console.error(error.message ?? 'An error has occurred.');
+			});
+	}, [userId]);
+
+	useEffect(() => {
+		if (user == null || posts == null) return;
+
+		setLoading(false);
+	}, [user, posts]);
 
 	if (loading) {
 		return <PageLoading />;

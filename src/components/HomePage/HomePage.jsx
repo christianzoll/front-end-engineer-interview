@@ -11,6 +11,25 @@ function HomePage() {
 	 * Load user data.
 	 * Data URL: https://jsonplaceholder.typicode.com/users
 	 */
+	useEffect(() => {
+		setLoading(true);
+
+		fetch('https://jsonplaceholder.typicode.com/users')
+			.then((response) => {
+				if (!response.ok) throw new Error('Malformed response');
+
+				return response.json();
+			})
+			.then((data) => {
+				setData(data);
+			})
+			.catch((error) => {
+				console.error(error.message ?? 'An error has occurred.');
+			})
+			.finally(() => {
+				setLoading(false);
+			});
+	}, []);
 
 	if (loading) {
 		return <PageLoading />;
