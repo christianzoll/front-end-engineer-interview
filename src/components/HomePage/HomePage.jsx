@@ -7,11 +7,6 @@ function HomePage() {
 	const [loading, setLoading] = useState(true);
 	const [data, setData] = useState([]);
 
-	/**
-	 * Load user data.
-	 * Data URL: https://jsonplaceholder.typicode.com/users
-	 */
-
 	if (loading) {
 		return <PageLoading />;
 	}
@@ -19,6 +14,11 @@ function HomePage() {
 	if (data == null) {
 		return <>An error has occurred</>;
 	}
+
+	/**
+	 * Load user data.
+	 * Data URL: https://jsonplaceholder.typicode.com/users
+	 */
 
 	return (
 		<>
