@@ -6,7 +6,7 @@ import PageLoading from '../PageLoading';
 function HomePage() {
 	const [loading, setLoading] = useState(true);
 	const [data, setData] = useState([]);
-	// hi
+
 	/**
 	 * Load user data.
 	 * Data URL: https://jsonplaceholder.typicode.com/users
