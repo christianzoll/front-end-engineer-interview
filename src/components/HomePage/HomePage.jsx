@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import PageLoading from '../PageLoading';
@@ -7,18 +7,30 @@ function HomePage() {
 	const [loading, setLoading] = useState(true);
 	const [data, setData] = useState([]);
 
+	useEffect(() => {
+	  const fetchData = async () => {
+		  const res = await fetch('https://jsonplaceholder.typicode.com/users')
+		  const newData = await res.json();
+		  console.log(newData);
+		  setData(newData)
+		  setLoading(false)
+		};	
+		fetchData();
+}, []);
+
 	if (loading) {
 		return <PageLoading />;
 	}
 
 	if (data == null) {
 		return <>An error has occurred</>;
-	}
+	} 
 
-	/**
-	 * Load user data.
-	 * Data URL: https://jsonplaceholder.typicode.com/users
-	 */
+	
+	// const retrieveData = () => {	
+	// 	await fetch('https://jsonplaceholder.typicode.com/users')
+	// }
+	
 
 	return (
 		<>
