@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import { Link, useParams } from 'react-router-dom';
 import PageLoading from '../PageLoading';
@@ -14,6 +14,10 @@ function UserPostsPage() {
 	 * Data URL: https://jsonplaceholder.typicode.com/posts?userId=[userId]
 	 * User URL: https://jsonplaceholder.typicode.com/users/[userId]
 	 */
+
+	useEffect(() => {
+		setLoading(false);
+	}, [user, posts]);
 
 	if (loading) {
 		return <PageLoading />;
